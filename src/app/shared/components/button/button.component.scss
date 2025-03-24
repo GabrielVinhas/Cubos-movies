@@ -1,0 +1,55 @@
+button {
+  border: none;
+  background-color: var(--purple-9);
+  color: var(--mauve-12);
+  padding: 1.2rem 2rem;
+  border-radius: 0.2rem;
+
+  img {
+    filter: invert(100%);
+  }
+
+  &:hover {
+    background-color: var(--purple-10);
+  }
+
+  &:active {
+    background-color: var(--purple-8);
+  }
+
+  &:disabled {
+    background-color: var(--mauve-9);
+    color: var(--mauve-a10);
+
+    img {
+      filter: invert(0);
+    }
+  }
+
+  &.secondary {
+    background-color: var(--purple-a2);
+    color: var(--purple-a12);
+
+    img {
+      filter: invert(0);
+    }
+
+    svg {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+
+    &:hover {
+      background-color: var(--purple-a3);
+    }
+
+    &:active {
+      background-color: var(--purple-a1);
+    }
+
+    &:disabled {
+      background-color: var(--mauve-a3);
+      color: var(--mauve-a10);
+    }
+  }
+}

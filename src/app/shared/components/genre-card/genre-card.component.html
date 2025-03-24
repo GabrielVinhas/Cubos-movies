@@ -1,0 +1,10 @@
+<p *ngIf="!filter">{{ genre }}</p>
+
+<p 
+  *ngIf="filter"
+  (click)="selectGenre()"
+  [class.selected]="isSelected"
+  class="genre-filter">
+  {{ genre }}
+</p>
+

@@ -1,0 +1,53 @@
+<div class="page">
+  <section class="details" [ngStyle]="{'background-image': 'linear-gradient(to right, var(--mauve-1) 20%, var(--mauve-2) 40%, rgba(18, 17, 19, 0) 100%), url(' + movie.backdrop + ')'}">
+    <div class="a">
+      <img [src]="movie.poster">
+    </div>
+    
+    <div class="b">
+      <div class="title">
+        <h1>{{ movie.title }}</h1>
+        <small>Título original: {{ movie.original_title }}</small>
+      </div>
+      <small>{{ movie.tagline }}</small>
+      <app-info-card label="Sinopse" [text]="movie.overview" />
+      <app-info-card label="Generos" [genres]="movie.genres" />
+    </div>
+  
+    <div class="c">
+      <div class="row-1">
+        <app-info-card label="Popularidade" [span]="movie.popularity"/>
+        <app-info-card label="Votos" [span]="movie.vote_count"/>
+        <app-rating [rating]="movie.rating"/>
+      </div>
+  
+      <div class="grid-row-2">
+        <app-info-card label="Lançamento" [span]="movie.release_date"/>
+        <app-info-card label="Duração" [span]="movie.runtime"/>
+        <app-info-card label="Situação" [span]="movie.status"/>
+        <app-info-card label="Idioma" [span]="movie.original_language | uppercase"/>
+      </div>
+  
+      <div class="row-3">
+        <app-info-card label="Orçamento" [span]="movie.budget"/>
+        <app-info-card label="Receita" [span]="movie.revenue"/>
+        <app-info-card label="Lucro" [span]="movie.gain"/>
+      </div>
+      
+    </div>
+  </section>
+  <section class="trailer">
+    <h3 *ngIf="movie.hasTrailer">Trailer</h3>
+    <h3 *ngIf="!movie.hasTrailer">Não há trailers disponíveis</h3>
+    <iframe 
+    *ngIf="movie.hasTrailer"
+      width="1238px" 
+      height="650px" 
+      [src]="movie.trailer" 
+      title="YouTube video player" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+  </section>
+</div>

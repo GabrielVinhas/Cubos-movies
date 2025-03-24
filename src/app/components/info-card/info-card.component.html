@@ -1,0 +1,10 @@
+<div class="info">
+  <p>{{ label | uppercase }}</p>
+  <p id="text">
+    {{ text }}
+  </p>
+  <span>{{ span }}</span>
+  <div *ngIf="genres.length > 0" class="genres-container">
+    <app-genre-card *ngFor="let genre of genres" [genre]="genre" />
+  </div>
+</div>

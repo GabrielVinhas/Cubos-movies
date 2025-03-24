@@ -1,0 +1,40 @@
+.circle {
+  width: 9.8rem;
+  height: 9.8rem;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--mauve-a1);
+  backdrop-filter: blur(4px);
+}
+
+.inner-circle {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  mask: radial-gradient(circle, transparent 60%, black 61%);
+  -webkit-mask: radial-gradient(circle, transparent 60%, black 61%);
+  transform: rotate(90deg); 
+}
+
+.percentage {
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+
+.percentage span {
+  font-size: 1.4rem;
+  color: #FFF;
+}
+
+

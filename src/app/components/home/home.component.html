@@ -1,0 +1,63 @@
+<section class="search" [formGroup]="searchForm">
+  <div class="search-container">
+    <input 
+    type="text" 
+    formControlName="search"
+    placeholder="Pesquise por filmes" 
+  />
+  <button (click)="searchMovies(1)">
+    <img src="assets/icons/Search.svg" alt="Pesquisar filmes">
+  </button>
+  </div>
+  
+  <app-button class="secondary" [svgContent]="filtersIcon" (click)="toggleFiltersContainer()"/>
+</section>
+
+<div *ngIf="showFilters" class="filters" [ngClass]="{ 'open': showFilters, 'closed': !showFilters }">
+  <app-genre-card 
+    *ngFor="let genre of genres"
+    [genre]="genre.name"
+    [genreId]="genre.id"
+    [filter]="true"
+    [isSelected]="selectedGenres.includes(genre.id)"
+    (toggleGenre)="updateGenreChange($event)"
+  />
+</div>
+
+
+<section class="movies" [ngClass]="{'no-results': this.searchForm.get('hasNoResults')?.value}">
+  <p *ngIf="this.searchForm.get('hasNoResults')?.value">{{ this.searchForm.get('noResultMessage')?.value }}</p>
+
+  <app-card 
+  (click)="showMovieDetails(movie.id)"
+  *ngFor="let movie of movies"
+    [movieName]="movie.title" 
+    [movieImg]="movie.poster"
+    [rating]="movie.rating"
+    [genres]="movie.genres"
+  />
+</section>
+
+<div class="paginator">
+  <app-button 
+    btnImg="assets/icons/arrow-left.svg"
+    (click)="previousPage()" 
+    [disabled]="currentPage === 1" 
+    [class]="currentPage === 1 ? 'secondary' : ''"
+  />
+
+  <app-button 
+    *ngFor="let page of pages" 
+    [btnText]="page.toString()"
+    (click)="goToPage(page)" 
+    [disabled]="page === currentPage"
+    [class]="page === currentPage ? 'secondary' : ''" 
+    />
+
+  <app-button 
+    (click)="nextPage()" 
+    btnImg="assets/icons/arrow-right.svg"
+    [disabled]="currentPage === totalPages"
+    [class]="currentPage === totalPages ? 'secondary' : ''"  
+  />
+</div> 

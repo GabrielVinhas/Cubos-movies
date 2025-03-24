@@ -1,0 +1,22 @@
+p {
+  background-color: var(--purple-a3);
+  backdrop-filter: blur(0.4rem);
+  color: var(--purple-12);
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+.genre-filter {
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(1.2);
+  }
+}
+
+.genre-filter.selected {
+  background-color: var(--purple-a3);
+  color: rgba(255, 255, 255, 1); 
+  font-weight: bold;
+}

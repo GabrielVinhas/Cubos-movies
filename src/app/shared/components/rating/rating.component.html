@@ -1,0 +1,8 @@
+<div class="circle" [ngClass]="class">
+  <div class="progress" [ngStyle]="{'background': getGradient(rating)}"></div>
+  <div class="inner-circle">
+    <p class="percentage" [ngStyle]="{'color': getRatingColor(rating)}">
+      {{ rating }}<span>%</span>
+    </p>
+  </div>
+</div>

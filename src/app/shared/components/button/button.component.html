@@ -1,0 +1,5 @@
+<button [ngClass]="class" [disabled]="disabled">
+  {{ btnText }}
+  <img *ngIf="btnImg" [src]="btnImg">
+  <span *ngIf="svgContent" [innerHTML]="svgContent"></span>
+</button>

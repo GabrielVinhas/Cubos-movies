@@ -2,9 +2,12 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: `<app-header />
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  <app-footer />`,
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'desafio-cubos';
+export class AppComponent  {
 }

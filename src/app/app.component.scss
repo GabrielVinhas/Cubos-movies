@@ -1,0 +1,8 @@
+main {
+  background-image: 
+    linear-gradient(rgba(18, 17, 19, 0.8) 0%, rgba(18, 17, 19, 0.9) 60%, var(--mauve-1) 100%),
+    url("/assets/images/background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 35% -300px;
+}

@@ -1,0 +1,80 @@
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 2.4rem;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: fit-content;
+
+  input {
+    background-color: var(--mauve-2);
+    border: 1px solid var(--mauve-9);
+    border-radius: 0.4rem;
+    padding: 1.2rem;
+    letter-spacing: 0px;
+    color: var(--mauve-12);
+    caret-color: var(--purple-9);
+    width: 48.8rem;
+
+    &:focus-visible {
+      outline: 1px solid var(--purple-9);
+      outline-offset: -1px; 
+    }
+  }
+
+  button {
+    position: absolute;
+    right: 0;
+    background-color: transparent;
+    border: none;
+    padding: 1.2rem;
+  }
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 0.4rem;
+}
+
+.movies {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  background-color: var(--mauve-a3);
+  backdrop-filter: blur(0.4rem);
+  margin: 2.2rem;
+  padding: 2.4rem;
+  border-radius: 0.4rem;
+  row-gap: 2.4rem;
+}
+
+.movies.no-results {
+  display: flex;
+  justify-content: center;
+  background-color: var(--mauve-1);
+  backdrop-filter: blur(0.4rem);
+
+  p {
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--mauve-12);
+  }
+}
+
+.paginator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 2.4rem;
+}
