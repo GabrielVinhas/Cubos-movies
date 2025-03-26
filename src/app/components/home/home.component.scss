@@ -48,14 +48,16 @@
 
 .movies {
   display: grid;
+  justify-content: center;
+  justify-items: center;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
+  gap: 2.4rem;
   background-color: var(--mauve-a3);
   backdrop-filter: blur(0.4rem);
   margin: 2.2rem;
   padding: 2.4rem;
   border-radius: 0.4rem;
-  row-gap: 2.4rem;
 }
 
 .movies.no-results {
@@ -77,4 +79,66 @@
   justify-content: center;
   gap: 10px;
   padding: 2.4rem;
+
+  .ellipsis {
+    display: none;
+  }
+}
+
+@media (width <= 1324px) {
+  .movies {
+    margin: 0;
+    border-radius: 0;
+  }
+}
+
+@media (width <= 1285px) {
+  .movies {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    column-gap: 1rem;
+    row-gap: 2rem;
+  }
+}
+
+@media (width <= 980px) {
+  .movies {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+}
+
+
+@media (width <= 745px) {
+  .search-container {
+    input {
+      width: 40rem;
+    }
+  }
+}
+
+@media (width <= 580px) {
+  .movies {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+  }
+}
+
+@media (width <= 520px) {
+  .search-container {
+    input {
+      width: 31.7rem;
+    }
+  }
+}
+
+@media (width <= 435px) {
+  // PAGINATOR!
+  .paginator {
+    padding: 1.6rem;
+
+    .ellipsis {
+      display: block;
+    }
+  }
 }

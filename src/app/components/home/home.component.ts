@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -48,9 +48,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.getGenres();
-    this.getMoviesGabriel(this.currentPage);
+    this.getMovies(this.currentPage);
 
-    // Fica monitorando e executa função de procurar filmes para procurar dinamicamente
+    // Mnoitora e executa função de procurar filmes para procurar dinamicamente
     this.searchForm
       .get('search')
       ?.valueChanges.pipe(debounceTime(200), distinctUntilChanged())
@@ -58,8 +58,13 @@ export class HomeComponent implements OnInit {
         this.searchMovies(1);
       });
   }
-  // Mudar para apenas getMovies
-  getMoviesGabriel(page: number, showSecondHalf: boolean = false) {
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkScreenWidth(event.target.innerWidth); 
+  }
+
+  getMovies(page: number, showSecondHalf: boolean = false) {
     this.moviesService.getPopularMovies(page).subscribe({
       next: (res) => {
         this.setMovies(res, showSecondHalf);
@@ -76,7 +81,7 @@ export class HomeComponent implements OnInit {
     if (!query || query.trim() === '') {
       this.movies = [];
       this.totalPages = 0;
-      this.getMoviesGabriel(this.currentPage);
+      this.getMovies(this.currentPage);
       return;
     }
   
@@ -98,7 +103,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  // Criada para centralizar logica de getmoviesgabriel e searchmovies
   setMovies(response: any, showSecondHalf:boolean = false) {
     this.apiPage = response.page;
     this.totalPages = response.total_pages * 2;
@@ -159,7 +163,7 @@ export class HomeComponent implements OnInit {
 
   filterMoviesByGenres(genres: number[], showSecondHalf: boolean = false) {
     if (this.selectedGenres.length === 0) {
-      this.getMoviesGabriel(this.currentPage);
+      this.getMovies(this.currentPage);
       return;
     }
 
@@ -176,12 +180,6 @@ export class HomeComponent implements OnInit {
           this.searchForm.get('hasNoResults')?.setValue(false);
           this.setMovies(res, showSecondHalf);
         }
-        // const filteredMovies = res.results.filter((movie: any) =>
-        //   this.selectedGenres.every((genreId) =>
-        //     movie.genre_ids.includes(genreId)
-        //   )
-        // );
-        // this.movies = this.mapMoviesPreview(filteredMovies);
       },
       error: (err) => {
         console.error('Erro ao carregar filmes:', err);
@@ -193,8 +191,21 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/details', movieId]);
   }
 
+  checkScreenWidth(width: number) {
+    if (width <= 435) {
+      this.updatePageNumbers(); 
+    } else if (width >= 435) {
+      this.updatePageNumbers(); 
+    }
+  }
+
   updatePageNumbers() {
-    const maxPagesToShow = 5;
+    let maxPagesToShow = 5;
+
+    if (window.innerWidth <= 435) {
+      maxPagesToShow = 3;
+    }
+
     let start = Math.max(1, this.currentPage - Math.floor(maxPagesToShow / 2));
     let end = Math.min(this.totalPages, start + maxPagesToShow - 1);
 
@@ -216,7 +227,7 @@ export class HomeComponent implements OnInit {
       const showSecondHalf = this.currentPage % 2 === 0;
   
       if (!this.searchForm.get('search')?.value) {
-        this.getMoviesGabriel(apiPage, showSecondHalf);
+        this.getMovies(apiPage, showSecondHalf);
       } else {
         this.searchMovies(apiPage, showSecondHalf);
       }
@@ -231,7 +242,7 @@ export class HomeComponent implements OnInit {
       const showSecondHalf = this.currentPage % 2 === 0;
   
       if (!this.searchForm.get('search')?.value) {
-        this.getMoviesGabriel(apiPage, showSecondHalf);
+        this.getMovies(apiPage, showSecondHalf);
       } else {
         this.searchMovies(apiPage, showSecondHalf);
       }
@@ -246,7 +257,7 @@ export class HomeComponent implements OnInit {
       const showSecondHalf = this.currentPage % 2 === 0;
   
       if (!this.searchForm.get('search')?.value) {
-        this.getMoviesGabriel(apiPage, showSecondHalf);
+        this.getMovies(apiPage, showSecondHalf);
       } else {
         this.searchMovies(apiPage, showSecondHalf);
       }

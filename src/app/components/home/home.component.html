@@ -52,7 +52,11 @@
     (click)="goToPage(page)" 
     [disabled]="page === currentPage"
     [class]="page === currentPage ? 'secondary' : ''" 
-    />
+  />
+
+  <app-button class="ellipsis"
+    btnText="..."
+  />
 
   <app-button 
     (click)="nextPage()" 

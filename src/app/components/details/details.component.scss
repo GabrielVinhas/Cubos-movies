@@ -11,14 +11,14 @@
   background-position: center;
   background-repeat: no-repeat;
 
-  .a {
+  .movie-poster {
     img {
       width: 35.4rem;
       height: 54rem;
     }
   }
 
-  .b {
+  .movie-title {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -45,7 +45,7 @@
     }
   }
   
-  .c {
+  .movie-info {
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -72,6 +72,75 @@
   }
 }
 
+.responsive-details {
+  display: none;
+  justify-content: center;
+  gap: 2rem;
+  padding: 3.2rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  .movie-poster {
+    img {
+      width: 35.4rem;
+      height: 54rem;
+    }
+  }
+
+  .movie-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  
+    .title {
+      display: flex;
+      flex-direction: column;
+
+      h1 {
+        font-size: 3.2rem;
+        font-weight: 600;
+        color: var(--mauve-12);
+      }
+
+      small {
+        color: var(--mauve-11);
+      }
+    }
+
+    small {
+      color: var(--mauve-12);
+      font-style: italic;
+    }
+  }
+  
+  .movie-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  
+    .row-1, .row-3 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+  
+    .grid-row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      justify-items: center;
+      row-gap: 1rem;
+      column-gap: 1rem;
+    }  
+  
+    .grid-row-2 > * {
+      width: 200px;
+    }
+  }
+}
 
 .trailer {
   padding: 3.2rem;
@@ -81,6 +150,73 @@
     font-weight: 700;
     margin-bottom: 1rem;
   }
+
+  iframe {
+    width: 123.8rem;
+    height: 65rem;
+  }
 }
 
+@media (width <= 1300px) {
+  .trailer {
+    iframe {
+      width: 100%;
+      height: 65rem;
+    }
+  }
+}
 
+@media (width <= 1100px) {
+  .details {
+    display: none;
+  }
+
+  .responsive-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    .movie-title {
+      .row-1 {
+        display: flex;
+        gap: 1rem;
+      }
+    }
+
+    .movie-info {
+      .grid-row-2 {
+        grid-template-columns: repeat(2, 21.3rem);
+        grid-template-rows: repeat(2, 10rem);
+        justify-items: center;
+        column-gap: 0;
+        row-gap: 0;
+      }
+
+      .row-3 {
+        justify-content: flex-start;
+      }
+    }
+  }
+
+  .trailer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+   iframe {
+    width: 38.2rem;
+    height: 19.7rem;
+   }
+  }
+}
+
+@media (width <= 450px) {
+  .responsive-details {
+    .movie-poster {
+      img {
+        width: 38.2rem;
+        height: 58rem;
+      }
+    }
+  }
+}
